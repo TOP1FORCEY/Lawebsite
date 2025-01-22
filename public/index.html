@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Collection Form</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="text-pattern">
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+        <span>InoLaw</span>
+      </div>    
+                 
+    <div class="background"></div>
+    <div class="form-container">
+    <h2>Отримати Консультацію</h2>
+    <form id="dataForm">
+        <input type="text" id="name" name="name" placeholder="Ваше Ім'я" required>
+        <input type="tel" id="phone" name="phone" placeholder="Ваш Номер Телефону" required>
+        <button type="submit">Надіслати</button>
+    </form>
+    <p id="responseMessage"></p>
+    </div>
+
+  <script>
+    document.getElementById('dataForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+
+      const response = await fetch('/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, phone }),
+      });
+
+      const result = await response.json();
+      const message = result.success ? 'Дякуємо!' : 'Submission failed.';
+      document.getElementById('responseMessage').innerText = message;
+    });
+  </script>
+</body>
+</html>

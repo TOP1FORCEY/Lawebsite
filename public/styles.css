@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* General Styling */
+body {
+  font-family: 'Roboto', sans-serif;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Background Gradient Animation */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  z-index: -2;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Diagonal Text Pattern */
+.text-pattern {
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  z-index: -1;
+  overflow: hidden;
+  transform: rotate(-45deg);
+}
+
+.text-pattern span {
+  font-size: 20px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.15);
+  animation: textMove 20s linear infinite;
+  user-select: none;
+  white-space: nowrap;
+}
+
+@keyframes textMove {
+  0% {
+    transform: translate(100%, -100%);
+  }
+  100% {
+    transform: translate(-100%, 100%);
+  }
+}
+
+/* Repeat Text in a Grid for Full Coverage */
+.text-pattern::before {
+  content: 'InoLaw InoLaw InoLaw InoLaw InoLaw \A InoLaw InoLaw InoLaw InoLaw InoLaw \A InoLaw InoLaw InoLaw InoLaw InoLaw';
+  display: block;
+  font-size: 30px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.159);
+  line-height: 1.5;
+  white-space: pre;
+  transform: rotate(-45deg);
+}
+
+/* Form Container Styling */
+.form-container {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.form-container:hover {
+  transform: translateY(-5px);
+}
+
+/* Heading Styling */
+h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-weight: 700;
+}
+
+/* Input Field Styling */
+input[type="text"], input[type="tel"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus, input[type="tel"]:focus {
+  border-color: #4facfe;
+  box-shadow: 0 0 8px rgba(79, 172, 254, 0.5);
+}
+
+/* Button Styling */
+button {
+  background-color: #4facfe;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #0078ff;
+  box-shadow: 0 8px 20px rgba(0, 120, 255, 0.4);
+}
+
+/* Paragraph Styling */
+p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #666;
+}
