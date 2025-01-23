@@ -1,142 +1,204 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+/* styles.css */
 
-/* General Styling */
-body {
-  font-family: 'Roboto', sans-serif;
-  height: 100vh;
+/* =====================================================
+   1. Reset Basic Styles
+   ===================================================== */
+/* Remove default margins and paddings, set box-sizing to border-box for all elements */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =====================================================
+ 2. Body Styling
+ ===================================================== */
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  height: 100vh; /* Full viewport height */
   display: flex;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  overflow: hidden;
+  justify-content: center;
   position: relative;
+  overflow: hidden; /* Hide overflow to prevent scrollbars from background animations */
+  background: #ffffff; /* Fallback background color */
 }
 
-/* Background Gradient Animation */
+/* =====================================================
+3. Gradient Background with SVG Pattern
+===================================================== */
 .background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fbc2eb, #a1c4fd, #c2e9fb);
-  background-size: 400% 400%;
-  animation: gradient 10s ease infinite;
-  z-index: -2;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+/* Multiple Backgrounds: SVG Pattern and Gradient */
+background: 
+    url('logo.svg') repeat, /* Replace with your SVG path */
+    linear-gradient(135deg, #a1c4fd, #c2e9fb, #ffffff);
+background-size: 320px 320px, 300% 300%; /* Larger pattern size for prominence */
+z-index: -1; /* Place behind all other elements */
+/* Gradient Animation */
+animation: gradientShift 30s ease infinite; /* Default duration: 30s for large screens */
 }
 
-@keyframes gradient {
+/* =====================================================
+ 4. Gradient Animation Keyframes
+ ===================================================== */
+@keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
-/* Diagonal Text Pattern */
-.text-pattern {
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 300%;
-  height: 300%;
-  z-index: -1;
-  overflow: hidden;
-  transform: rotate(-45deg);
-}
-
-.text-pattern span {
-  font-size: 20px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.15);
-  animation: textMove 20s linear infinite;
-  user-select: none;
-  white-space: nowrap;
-}
-
-@keyframes textMove {
-  0% {
-    transform: translate(100%, -100%);
-  }
-  100% {
-    transform: translate(-100%, 100%);
-  }
-}
-
-/* Repeat Text in a Grid for Full Coverage */
-.text-pattern::before {
-  content: 'InoLaw InoLaw InoLaw InoLaw InoLaw \A InoLaw InoLaw InoLaw InoLaw InoLaw \A InoLaw InoLaw InoLaw InoLaw InoLaw';
-  display: block;
-  font-size: 30px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.159);
-  line-height: 1.5;
-  white-space: pre;
-  transform: rotate(-45deg);
-}
-
-/* Form Container Styling */
+/* =====================================================
+ 5. Form Container Styling
+ ===================================================== */
 .form-container {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 40px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 400px;
+  background: rgba(255, 255, 255, 0.533); /* Slightly less transparent white background */
+  padding: 60px 40px; /* Increased padding for a larger container */
+  border-radius: 16px; /* More rounded corners */
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15); /* Enhanced shadow for greater depth */
+  max-width: 500px; /* Increased max-width for a larger form */
+  width: 95%; /* Slightly wider on smaller screens */
   text-align: center;
-  z-index: 1;
-  transition: transform 0.3s ease;
 }
 
-.form-container:hover {
-  transform: translateY(-5px);
+/* =====================================================
+ 6. Heading Styling
+ ===================================================== */
+.form-container h2 {
+  margin-bottom: 35px; /* More spacing below the heading */
+  font-size: 32px; /* Increased font size for better prominence */
+  color: #333333;
 }
 
-/* Heading Styling */
-h2 {
-  margin-bottom: 20px;
-  color: #333;
-  font-weight: 700;
+/* =====================================================
+ 7. Form Styling
+ ===================================================== */
+.form-container form {
+  display: flex;
+  flex-direction: column;
 }
 
-/* Input Field Styling */
-input[type="text"], input[type="tel"] {
+/* =====================================================
+ 8. Form Group Styling
+ ===================================================== */
+.form-group {
+  margin-bottom: 25px; /* Increased spacing between form groups */
+}
+
+/* =====================================================
+ 9. Visually Hidden Class (for Accessibility)
+ ===================================================== */
+/* Hides elements visually but keeps them accessible to screen readers */
+.visually-hidden { 
+  position: absolute;
+  width: 1px; 
+  height: 1px; 
+  padding: 0; 
+  margin: -1px; 
+  overflow: hidden; 
+  clip: rect(0, 0, 0, 0); 
+  white-space: nowrap; 
+  border: 0;
+}
+
+/* =====================================================
+ 10. Input Fields Styling
+ ===================================================== */
+.form-container input {
+  padding: 16px 20px; /* Larger padding for bigger input fields */
+  border: 1px solid #ccc;
+  border-radius: 10px; /* Slightly more rounded */
+  font-size: 18px; /* Increased font size for better readability */
+  transition: border-color 0.3s ease;
   width: 100%;
-  padding: 12px 15px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-  outline: none;
-  transition: all 0.3s ease;
 }
 
-input[type="text"]:focus, input[type="tel"]:focus {
-  border-color: #4facfe;
-  box-shadow: 0 0 8px rgba(79, 172, 254, 0.5);
+.form-container input:focus {
+  border-color: #6a89cc; /* Highlight border on focus */
+  outline: none; /* Remove default outline */
 }
 
-/* Button Styling */
-button {
-  background-color: #4facfe;
-  color: white;
-  padding: 15px 20px;
+/* =====================================================
+ 11. Submit Button Styling
+ ===================================================== */
+.form-container button.submit-button {
+  padding: 16px 20px; /* Larger padding for a bigger button */
+  background-color: #6a89cc;
+  color: #ffffff;
   border: none;
-  border-radius: 10px;
+  border-radius: 10px; /* More rounded corners */
+  font-size: 18px; /* Increased font size for better readability */
   cursor: pointer;
-  font-size: 16px;
-  font-weight: 700;
-  box-shadow: 0 5px 15px rgba(79, 172, 254, 0.3);
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 25px; /* More spacing above the button */
 }
 
-button:hover {
-  background-color: #0078ff;
-  box-shadow: 0 8px 20px rgba(0, 120, 255, 0.4);
+.form-container button.submit-button:hover {
+  background-color: #3c5aa6; /* Darker shade on hover */
+  transform: translateY(-3px); /* Slightly more upward movement on hover */
 }
 
-/* Paragraph Styling */
-p {
-  margin-top: 20px;
-  font-size: 14px;
-  color: #666;
+.form-container button.submit-button:active {
+  background-color: #2d478e; /* Even darker shade on click */
+  transform: translateY(0); /* Reset position on click */
+}
+
+/* =====================================================
+ 12. Response Message Styling
+ ===================================================== */
+#responseMessage {
+  margin-top: 20px; /* Increased spacing above the message */
+  font-size: 18px; /* Larger font size for better visibility */
+  transition: color 0.3s ease;
+}
+
+#responseMessage.success {
+  color: #4CAF50; /* Green for success messages */
+}
+
+#responseMessage.error {
+  color: #F44336; /* Red for error messages */
+}
+
+/* =====================================================
+ 13. Optional: Disable Submit Button While Submitting
+ ===================================================== */
+button:disabled {
+  background-color: #a1c4fd; /* Light blue color when disabled */
+  cursor: not-allowed; /* Indicate non-interactive state */
+  opacity: 0.7; /* Slight transparency */
+}
+
+/* =====================================================
+ 14. Responsive Design
+ ===================================================== */
+/* Adjust styles for screens narrower than 480px */
+@media (max-width: 480px) {
+  .background {
+    /* Adjust animation speed for smaller screens */
+    animation: gradientShift 15s ease infinite; /* Faster animation on smaller screens */
+    background-size: 360px 360px, 100% 100%; /* Reduced pattern size for better visibility */
+  }
+
+  .form-container {
+      padding: 40px 25px; /* Reduced padding on smaller screens */
+  }
+
+  .form-container h2 {
+      font-size: 28px; /* Smaller heading on mobile */
+  }
+
+  .form-container input,
+  .form-container button.submit-button {
+      font-size: 16px; /* Slightly smaller text for inputs and buttons */
+      padding: 14px 16px; /* Reduced padding */
+  }
+
+  #responseMessage {
+      font-size: 16px; /* Slightly smaller font size for messages */
+  }
 }

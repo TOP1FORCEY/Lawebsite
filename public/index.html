@@ -2,28 +2,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Data Collection Form</title>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="styles.css"> <!-- Ensure this path is correct -->
 </head>
 <body>         
     <div class="background"></div>
     <div class="form-container">
-    <h2>Отримати Консультацію</h2>
-    <form id="dataForm">
-        <input type="text" id="name" name="name" placeholder="Ваше Ім'я" required>
-        <input type="tel" id="phone" name="phone" placeholder="Ваш Номер Телефону" required>
-        <button type="submit">Надіслати</button>
-    </form>
-    <p id="responseMessage"></p>
+        <h2>Отримати Консультацію</h2>
+        <form id="dataForm" novalidate>
+            <div class="form-group">
+                <label for="name" class="visually-hidden">Ваше Ім'я</label>
+                <input type="text" id="name" name="name" placeholder="Ваше Ім'я" required>
+            </div>
+            <div class="form-group">
+                <label for="phone" class="visually-hidden">Ваш Номер Телефону</label>
+                <input type="tel" id="phone" name="phone" placeholder="Ваш Номер Телефону" required pattern="^[0-9]{10,15}$" title="Будь ласка, введіть дійсний номер телефону">
+            </div>
+            <button type="submit" class="submit-button">Надіслати</button>
+        </form>
+        <p id="responseMessage" aria-live="polite"></p>
     </div>
 
   <script>
     document.getElementById('dataForm').addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('name').value;
-      const phone = document.getElementById('phone').value;
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+
+      // Basic front-end validation
+      if (name === '' || phone === '') {
+          displayMessage('Будь ласка, заповніть всі поля.', false);
+          return;
+      }
 
       const response = await fetch('/submit', {
         method: 'POST',
@@ -34,9 +46,19 @@
       });
 
       const result = await response.json();
-      const message = result.success ? 'Дякуємо!' : 'Submission failed.';
-      document.getElementById('responseMessage').innerText = message;
+      if (result.success) {
+          displayMessage('Дякуємо!', true);
+          document.getElementById('dataForm').reset();
+      } else {
+          displayMessage('Сталася помилка. Спробуйте ще раз.', false);
+      }
     });
+
+    function displayMessage(message, isSuccess) {
+      const responseMessage = document.getElementById('responseMessage');
+      responseMessage.innerText = message;
+      responseMessage.className = isSuccess ? 'success' : 'error';
+    }
   </script>
 </body>
 </html>
