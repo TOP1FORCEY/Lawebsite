@@ -11,8 +11,8 @@
 }
 
 /* =====================================================
- 2. Body Styling
- ===================================================== */
+  2. Body Styling
+  ===================================================== */
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   height: 100vh; /* Full viewport height */
@@ -25,27 +25,27 @@ body {
 }
 
 /* =====================================================
-3. Gradient Background with SVG Pattern
-===================================================== */
+  3. Gradient Background with SVG Pattern
+  ===================================================== */
 .background {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-/* Multiple Backgrounds: SVG Pattern and Gradient */
-background: 
-    url('logo.svg') repeat, /* Replace with your SVG path */
-    linear-gradient(135deg, #a1c4fd, #c2e9fb, #ffffff);
-background-size: 320px 320px, 300% 300%; /* Larger pattern size for prominence */
-z-index: -1; /* Place behind all other elements */
-/* Gradient Animation */
-animation: gradientShift 30s ease infinite; /* Default duration: 30s for large screens */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Multiple Backgrounds: SVG Pattern and Gradient */
+  background: 
+      url('logo.svg') repeat, /* Replace with your SVG path */
+      linear-gradient(135deg, #a1c4fd, #c2e9fb, #ffffff);
+  background-size: 320px 320px, 300% 300%; /* SVG pattern size */
+  z-index: -1; /* Place behind all other elements */
+  /* Gradient Animation */
+  animation: gradientShift 30s ease infinite; /* Default duration: 30s for large screens */
 }
 
 /* =====================================================
- 4. Gradient Animation Keyframes
- ===================================================== */
+  4. Gradient Animation Keyframes
+  ===================================================== */
 @keyframes gradientShift {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
@@ -53,8 +53,8 @@ animation: gradientShift 30s ease infinite; /* Default duration: 30s for large s
 }
 
 /* =====================================================
- 5. Form Container Styling
- ===================================================== */
+  5. Form Container Styling
+  ===================================================== */
 .form-container {
   background: rgba(255, 255, 255, 0.533); /* Slightly less transparent white background */
   padding: 60px 40px; /* Increased padding for a larger container */
@@ -66,8 +66,8 @@ animation: gradientShift 30s ease infinite; /* Default duration: 30s for large s
 }
 
 /* =====================================================
- 6. Heading Styling
- ===================================================== */
+  6. Heading Styling
+  ===================================================== */
 .form-container h2 {
   margin-bottom: 35px; /* More spacing below the heading */
   font-size: 32px; /* Increased font size for better prominence */
@@ -75,23 +75,23 @@ animation: gradientShift 30s ease infinite; /* Default duration: 30s for large s
 }
 
 /* =====================================================
- 7. Form Styling
- ===================================================== */
+  7. Form Styling
+  ===================================================== */
 .form-container form {
   display: flex;
   flex-direction: column;
 }
 
 /* =====================================================
- 8. Form Group Styling
- ===================================================== */
+  8. Form Group Styling
+  ===================================================== */
 .form-group {
   margin-bottom: 25px; /* Increased spacing between form groups */
 }
 
 /* =====================================================
- 9. Visually Hidden Class (for Accessibility)
- ===================================================== */
+  9. Visually Hidden Class (for Accessibility)
+  ===================================================== */
 /* Hides elements visually but keeps them accessible to screen readers */
 .visually-hidden { 
   position: absolute;
@@ -106,8 +106,8 @@ animation: gradientShift 30s ease infinite; /* Default duration: 30s for large s
 }
 
 /* =====================================================
- 10. Input Fields Styling
- ===================================================== */
+  10. Input Fields Styling
+  ===================================================== */
 .form-container input {
   padding: 16px 20px; /* Larger padding for bigger input fields */
   border: 1px solid #ccc;
@@ -123,8 +123,8 @@ animation: gradientShift 30s ease infinite; /* Default duration: 30s for large s
 }
 
 /* =====================================================
- 11. Submit Button Styling
- ===================================================== */
+  11. Submit Button Styling
+  ===================================================== */
 .form-container button.submit-button {
   padding: 16px 20px; /* Larger padding for a bigger button */
   background-color: #6a89cc;
@@ -148,8 +148,8 @@ animation: gradientShift 30s ease infinite; /* Default duration: 30s for large s
 }
 
 /* =====================================================
- 12. Response Message Styling
- ===================================================== */
+  12. Response Message Styling
+  ===================================================== */
 #responseMessage {
   margin-top: 20px; /* Increased spacing above the message */
   font-size: 18px; /* Larger font size for better visibility */
@@ -165,8 +165,8 @@ animation: gradientShift 30s ease infinite; /* Default duration: 30s for large s
 }
 
 /* =====================================================
- 13. Optional: Disable Submit Button While Submitting
- ===================================================== */
+  13. Optional: Disable Submit Button While Submitting
+  ===================================================== */
 button:disabled {
   background-color: #a1c4fd; /* Light blue color when disabled */
   cursor: not-allowed; /* Indicate non-interactive state */
@@ -174,14 +174,14 @@ button:disabled {
 }
 
 /* =====================================================
- 14. Responsive Design
- ===================================================== */
+  14. Responsive Design
+  ===================================================== */
 /* Adjust styles for screens narrower than 480px */
 @media (max-width: 480px) {
   .background {
     /* Adjust animation speed for smaller screens */
-    animation: gradientShift 15s ease infinite; /* Faster animation on smaller screens */
-    background-size: 360px 360px, 100% 100%; /* Reduced pattern size for better visibility */
+    animation: gradientShift 20s ease infinite; /* Faster animation: reduced from 30s to 20s */
+    background-size: 160px 160px, 300% 300%; /* Further reduced SVG pattern size from 160px to 120px */
   }
 
   .form-container {
@@ -200,5 +200,10 @@ button:disabled {
 
   #responseMessage {
       font-size: 16px; /* Slightly smaller font size for messages */
+  }
+
+  /* Optional: Adjust background-size further if needed */
+  .background {
+    background-size: 120px 120px, 300% 300%; /* Further reduced to 120px for better fit */
   }
 }
